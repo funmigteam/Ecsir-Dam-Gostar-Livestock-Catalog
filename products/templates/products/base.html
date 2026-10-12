@@ -1,0 +1,155 @@
+{% load static %}<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#2b2416" />
+    <meta name="description" content="{{ site_content.meta_description }}" />
+    <title>{% block title %}{{ site_content.home_page_title }}{% endblock %}</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:site_name" content="{{ site_content.brand_name }}" />
+    <meta property="og:title" content="{% block og_title %}{{ site_content.home_page_title }}{% endblock %}" />
+    <meta property="og:description" content="{{ site_content.meta_description }}" />
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'products/img/logo.jpg' %}" />
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}" />
+    <link rel="icon" type="image/jpeg" href="{% static 'products/img/logo.jpg' %}" />
+    <link rel="apple-touch-icon" href="{% static 'products/img/logo.jpg' %}" />
+    <link rel="preload" href="{% static 'products/fonts/Vazirmatn.ttf' %}" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="{% static 'products/css/styles.css' %}?v=20261007" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("ecsir-theme");
+          if (saved === "dark" || saved === "light") document.documentElement.dataset.theme = saved;
+        } catch (e) {}
+        document.documentElement.classList.add("js");
+      })();
+    </script>
+    <script defer src="{% static 'products/js/site.js' %}?v=20261007"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "{{ site_content.brand_name|escapejs }}",
+        "url": "{{ request.scheme }}://{{ request.get_host }}/",
+        "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'products/img/logo.jpg' %}",
+        "email": "{{ site_content.email|escapejs }}",
+        "telephone": "{{ site_content.phone_link|escapejs }}",
+        "address": "{{ site_content.address|escapejs }}"
+      }
+    </script>
+  </head>
+  <body class="{% block body_class %}{% endblock %}" id="top">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="i-vaccine" viewBox="0 0 24 24"><path d="m18 2 4 4M17 7l3-3M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5M9 11l4 4M5 19l-3 3M14 4l6 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-medicine" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7ZM8.5 8.5l7 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-canned" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5V8ZM3 8l9 5 9-5M12 13v8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-food" viewBox="0 0 24 24"><path d="M2 22 16 8M3.5 12.5 5 11l1.5 1.5a3.5 3.5 0 0 1 0 5L5 19l-1.5-1.5a3.5 3.5 0 0 1 0-5ZM7.5 8.5 9 7l1.5 1.5a3.5 3.5 0 0 1 0 5L9 15l-1.5-1.5a3.5 3.5 0 0 1 0-5ZM11.5 4.5 13 3l1.5 1.5a3.5 3.5 0 0 1 0 5L13 11l-1.5-1.5a3.5 3.5 0 0 1 0-5ZM20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4ZM11.5 17.5 13 16l1.5 1.5a3.5 3.5 0 0 1-5 0L11 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3M7 15h10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-support" viewBox="0 0 24 24"><path d="M3 14v-2a9 9 0 0 1 18 0v2M21 15a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2v2ZM3 15a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2v2ZM18 17v1a3 3 0 0 1-3 3h-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 4h14v12H1zM15 9h4l3 3v4h-7M5.5 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18.5 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2ZM22 6l-10 7L2 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0ZM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM21 21l-4.3-4.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </svg>
+
+    <div class="preloader" aria-hidden="true">
+      <div class="preloader-mark">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" /></svg>
+        <img src="{% static 'products/img/logo.jpg' %}" alt="" />
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="page-noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="app-container header-inner">
+        <a class="brand" href="{% url 'home' %}" aria-label="{{ site_content.home_brand_aria }}">
+          <span class="brand-logo-shell">
+            <img src="{% static 'products/img/logo.jpg' %}" alt="" class="brand-logo" width="48" height="48" />
+          </span>
+          <span class="brand-copy">
+            <small>{% block brand_tagline %}{{ site_content.home_brand_tagline }}{% endblock %}</small>
+            <strong>{{ site_content.brand_name }}</strong>
+          </span>
+        </a>
+        <nav class="nav-menu" id="nav-menu" aria-label="{{ site_content.main_menu_label }}">
+          {% block nav %}{% endblock %}
+        </nav>
+        <div class="header-tools">
+          <button type="button" class="icon-button theme-toggle" aria-label="{{ site_content.theme_toggle_label }}" title="{{ site_content.theme_toggle_label }}">
+            <svg class="icon icon-sun"><use href="#i-sun"/></svg>
+            <svg class="icon icon-moon"><use href="#i-moon"/></svg>
+          </button>
+          {% block header_cta %}{% endblock %}
+          <button type="button" class="icon-button menu-toggle" aria-label="{{ site_content.menu_toggle_label }}" aria-controls="nav-menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+      <div class="footer-glow" aria-hidden="true"></div>
+      <div class="app-container footer-grid">
+        <div class="footer-col footer-about">
+          <div class="footer-brand">
+            <img src="{% static 'products/img/logo.jpg' %}" alt="" width="52" height="52" />
+            <strong>{{ site_content.brand_name }}</strong>
+          </div>
+          <p>{{ site_content.footer_about }}</p>
+        </div>
+        <div class="footer-col">
+          <h4>{{ site_content.footer_links_title }}</h4>
+          <ul>
+            <li><a href="{% url 'home' %}">{{ site_content.catalog_nav_home }}</a></li>
+            <li><a href="{% url 'products' %}">{{ site_content.nav_products }}</a></li>
+            <li><a href="{% url 'home' %}#about">{{ site_content.nav_about }}</a></li>
+            <li><a href="{% url 'home' %}#faq">{{ site_content.nav_faq }}</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>{{ site_content.footer_contact_title }}</h4>
+          <ul class="footer-contact">
+            <li><svg class="icon"><use href="#i-phone"/></svg><a href="tel:{{ site_content.phone_link }}" dir="ltr">{{ site_content.phone_display }}</a></li>
+            <li><svg class="icon"><use href="#i-mail"/></svg><a href="mailto:{{ site_content.email }}">{{ site_content.email }}</a></li>
+            <li><svg class="icon"><use href="#i-pin"/></svg><span>{{ site_content.address }}</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="app-container footer-bottom">
+        <p>{{ site_content.copyright_text }}</p>
+        <p><a href="https://funmig.com" target="_blank" rel="noopener noreferrer">تحت توسعه تیم فان‌میگ</a></p>
+      </div>
+    </footer>
+
+    <a href="tel:{{ site_content.phone_link }}" class="floating-call" aria-label="{{ site_content.floating_call_label }}">
+      <svg class="icon"><use href="#i-phone"/></svg>
+      <span>{{ site_content.floating_call_label }}</span>
+    </a>
+    <a href="#top" class="back-to-top" aria-label="{{ site_content.back_to_top_label }}">
+      <svg class="progress-ring" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" /></svg>
+      <svg class="icon"><use href="#i-up"/></svg>
+    </a>
+    <div class="toast" role="status" aria-live="polite"></div>
+    {% block after_footer %}{% endblock %}
+  </body>
+</html>

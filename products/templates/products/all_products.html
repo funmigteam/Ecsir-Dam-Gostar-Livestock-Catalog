@@ -1,0 +1,176 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block title %}{{ site_content.catalog_page_title }}{% endblock %}
+{% block og_title %}{{ site_content.catalog_page_title }}{% endblock %}
+{% block body_class %}catalog-page{% endblock %}
+{% block brand_tagline %}{{ site_content.catalog_brand_tagline }}{% endblock %}
+
+{% block nav %}
+  <a href="{% url 'home' %}">{{ site_content.catalog_nav_home }}</a>
+  <a href="#product-list">{{ site_content.nav_products }}</a>
+  <a href="{% url 'home' %}#faq">{{ site_content.nav_faq }}</a>
+  <a href="{% url 'home' %}#contact">{{ site_content.nav_contact }}</a>
+{% endblock %}
+
+{% block header_cta %}
+  <a class="header-cta" href="{% url 'home' %}">
+    <span>{{ site_content.catalog_back_button }}</span>
+    <svg class="icon"><use href="#i-arrow"/></svg>
+  </a>
+{% endblock %}
+
+{% block content %}
+  <section class="catalog-hero">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="catalog-glow" aria-hidden="true"></div>
+    <div class="app-container catalog-hero-inner">
+      <div class="catalog-title">
+        <div class="eyebrow reveal"><span class="eyebrow-dot"></span> {{ site_content.catalog_eyebrow }}</div>
+        <h1 class="reveal">{{ site_content.catalog_title_before }} <em>{{ site_content.catalog_title_emphasis }}</em></h1>
+        <p class="reveal">{{ site_content.catalog_description }}</p>
+        <div class="catalog-hero-cats reveal">
+          {% for category in categories %}
+          <button type="button" class="hero-cat-pill" data-jump-category="{{ category.key }}">
+            <svg class="icon"><use href="#i-{{ category.key }}"/></svg>
+            {% if category.key == "vaccine" %}{{ site_content.filter_vaccine }}{% elif category.key == "medicine" %}{{ site_content.filter_medicine }}{% elif category.key == "canned" %}{{ site_content.filter_canned }}{% else %}{{ site_content.filter_food }}{% endif %}
+            <b>{{ category.count }}</b>
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="catalog-mark reveal">
+        <div class="catalog-mark-ring"></div>
+        <div class="catalog-mark-ring catalog-mark-ring--two"></div>
+        <strong data-count="{{ products|length }}">۰</strong>
+        <span>{{ site_content.catalog_count_label }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="product-list" class="section-space product-section">
+    <div class="app-container">
+      <div class="catalog-toolbar reveal">
+        <div>
+          <span class="section-kicker">{{ site_content.catalog_section_kicker }}</span>
+          <h2>{{ site_content.catalog_section_title }}</h2>
+        </div>
+        <div class="search-box">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+          <input id="product-search" type="search" placeholder="{{ site_content.catalog_search_placeholder }}" autocomplete="off" aria-label="{{ site_content.catalog_search_placeholder }}" />
+          <kbd aria-hidden="true">/</kbd>
+        </div>
+      </div>
+
+      <div class="catalog-controls reveal">
+        <div class="category-filters" role="group" aria-label="{{ site_content.catalog_filter_aria }}">
+          <button class="category-filter is-active" type="button" data-category="all" aria-pressed="true">{{ site_content.filter_all }} <b>{{ products|length }}</b></button>
+          {% for category in categories %}
+          <button class="category-filter" type="button" data-category="{{ category.key }}" aria-pressed="false">
+            {% if category.key == "vaccine" %}{{ site_content.filter_vaccine }}{% elif category.key == "medicine" %}{{ site_content.filter_medicine }}{% elif category.key == "canned" %}{{ site_content.filter_canned }}{% else %}{{ site_content.filter_food }}{% endif %}
+            <b>{{ category.count }}</b>
+          </button>
+          {% endfor %}
+        </div>
+        <div class="view-tools">
+          <label class="sort-select">
+            <span>{{ site_content.catalog_sort_label }}</span>
+            <select id="product-sort">
+              <option value="default">{{ site_content.catalog_sort_default }}</option>
+              <option value="alpha">{{ site_content.catalog_sort_alpha }}</option>
+            </select>
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </label>
+          <div class="view-toggle" role="group">
+            <button type="button" class="is-active" data-view="grid" aria-pressed="true" aria-label="{{ site_content.catalog_view_grid }}" title="{{ site_content.catalog_view_grid }}"><svg class="icon"><use href="#i-grid"/></svg></button>
+            <button type="button" data-view="list" aria-pressed="false" aria-label="{{ site_content.catalog_view_list }}" title="{{ site_content.catalog_view_list }}"><svg class="icon"><use href="#i-list"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <p class="result-count" aria-live="polite"><b>{{ products|length }}</b> {{ site_content.catalog_result_text }}</p>
+
+      <div class="product-grid">
+        {% for product in products %}
+        <article class="product-card product-card--{{ product.category }} reveal" id="p-{{ forloop.counter }}" data-index="{{ forloop.counter }}" data-category="{{ product.category }}" data-title="{{ product.title }}" data-product="{{ product.title }} {{ product.subtitle }} {{ product.description }} {{ product.category_label }}">
+          <div class="product-card-top">
+            <span class="product-index">{{ forloop.counter|stringformat:"02d" }}</span>
+            <span class="product-badge">{{ product.category_label }}</span>
+          </div>
+          <div class="product-symbol" aria-hidden="true">
+            <svg class="icon"><use href="#i-{{ product.category }}"/></svg>
+          </div>
+          <div class="product-body">
+            <h3 class="hl">{{ product.title }}</h3>
+            <p class="product-subtitle hl">{{ product.subtitle }}</p>
+            <p class="product-description">{{ product.description }}</p>
+            <ul class="feature-list">
+              {% for feature in product.features|slice:":2" %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <button type="button" class="product-detail-btn">
+            <span>{{ site_content.product_detail_button }}</span>
+            <svg class="icon"><use href="#i-arrow"/></svg>
+          </button>
+          <div class="product-detail-data" hidden>
+            <h5>{{ product.title }}</h5>
+            <p class="detail-badge">{{ product.category_label }}</p>
+            <p class="detail-subtitle">{{ product.subtitle }}</p>
+            <p class="detail-description">{{ product.description }}</p>
+            <ul class="detail-feature-list">
+              {% for feature in product.features %}<li>{{ feature }}</li>{% endfor %}
+            </ul>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      <div class="empty-state" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+        <p>{{ site_content.empty_products }}</p>
+        <button type="button" class="button button--dark clear-filters">{{ site_content.catalog_clear_filters }}</button>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block after_footer %}
+  <div class="product-modal-overlay" id="product-modal-overlay" hidden></div>
+  <section class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <button type="button" class="product-modal-close" id="product-modal-close" aria-label="{{ site_content.modal_close_label }}">×</button>
+    <div class="modal-accent"></div>
+    <div class="modal-head">
+      <span class="modal-symbol"><svg class="icon"><use href="#i-food"/></svg></span>
+      <div>
+        <span class="modal-kicker">{{ site_content.modal_kicker }} · <span class="modal-badge"></span></span>
+        <h3 class="modal-title" id="modal-title"></h3>
+      </div>
+    </div>
+    <p class="modal-subtitle"></p>
+    <div class="modal-info-block">
+      <h4>{{ site_content.modal_about_title }}</h4>
+      <p class="modal-description"></p>
+    </div>
+    <div class="modal-section">
+      <h4>{{ site_content.modal_features_title }}</h4>
+      <ul class="modal-feature-list"></ul>
+    </div>
+    <div class="modal-actions">
+      <a class="button button--gold" href="tel:{{ site_content.phone_link }}">
+        <svg class="icon"><use href="#i-phone"/></svg>
+        <span>{{ site_content.modal_inquiry_button }}</span>
+      </a>
+      <button type="button" class="button button--outline modal-copy" data-copied="{{ site_content.modal_copied }}">
+        <svg class="icon"><use href="#i-link"/></svg>
+        <span>{{ site_content.modal_copy_link }}</span>
+      </button>
+    </div>
+    <div class="modal-nav">
+      <button type="button" class="modal-prev" aria-label="{{ site_content.modal_prev }}"><svg class="icon icon-flip"><use href="#i-arrow"/></svg><span>{{ site_content.modal_prev }}</span></button>
+      <span class="modal-position"></span>
+      <button type="button" class="modal-next" aria-label="{{ site_content.modal_next }}"><span>{{ site_content.modal_next }}</span><svg class="icon"><use href="#i-arrow"/></svg></button>
+    </div>
+  </section>
+{% endblock %}

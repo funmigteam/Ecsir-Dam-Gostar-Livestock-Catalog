@@ -1,0 +1,297 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block body_class %}home-page{% endblock %}
+
+{% block nav %}
+  <a href="{% url 'products' %}">{{ site_content.nav_products }}</a>
+  <a href="#about">{{ site_content.nav_about }}</a>
+  <a href="#process">{{ site_content.nav_process }}</a>
+  <a href="#faq">{{ site_content.nav_faq }}</a>
+  <a href="#contact">{{ site_content.nav_contact }}</a>
+{% endblock %}
+
+{% block header_cta %}
+  <a class="header-cta" href="{% url 'products' %}">
+    <span>{{ site_content.catalog_cta }}</span>
+    <svg class="icon"><use href="#i-arrow"/></svg>
+  </a>
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <canvas class="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-orb hero-orb--one" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb--two" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="app-container hero-content">
+      <div class="hero-copy">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-dot"></span>
+          {{ site_content.hero_eyebrow }}
+        </div>
+        <h1 class="reveal split-title">{{ site_content.hero_title_before }} <em>{{ site_content.hero_title_emphasis }}</em> {{ site_content.hero_title_after }}</h1>
+        <p class="rotator reveal">
+          <span class="rotator-prefix">{{ site_content.hero_rotating_prefix }}</span>
+          <span class="rotator-word" data-words="{{ site_content.hero_rotating_words }}"></span><span class="rotator-caret" aria-hidden="true"></span>
+        </p>
+        <p class="hero-description reveal">{{ site_content.hero_description }}</p>
+        <div class="hero-actions reveal">
+          <a class="button button--gold magnetic" href="{% url 'products' %}">
+            <span>{{ site_content.hero_products_button }}</span>
+            <svg class="icon"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="button button--ghost" href="#about">{{ site_content.hero_about_button }}</a>
+        </div>
+        <div class="hero-trust reveal">
+          <span><svg class="icon"><use href="#i-flask"/></svg>{{ site_content.hero_trust_1 }}</span>
+          <span><svg class="icon"><use href="#i-shield"/></svg>{{ site_content.hero_trust_2 }}</span>
+          <span><svg class="icon"><use href="#i-support"/></svg>{{ site_content.hero_trust_3 }}</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" data-tilt>
+        <div class="visual-rings" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="hero-logo-card">
+          <div class="card-shine" aria-hidden="true"></div>
+          <span class="card-kicker">{{ site_content.hero_card_kicker }}</span>
+          <div class="hero-logo-wrap">
+            <img src="{% static 'products/img/logo.jpg' %}" alt="{{ site_content.hero_logo_alt }}" width="220" height="220" />
+          </div>
+          <h2>{{ site_content.hero_card_title }}</h2>
+          <p>{{ site_content.hero_card_description }}</p>
+        </div>
+        <div class="floating-chip floating-chip--top">
+          <span class="chip-icon"><svg class="icon"><use href="#i-shield"/></svg></span>
+          {{ site_content.hero_chip_top }}
+        </div>
+        <div class="floating-chip floating-chip--bottom">
+          <span class="chip-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          {{ site_content.hero_chip_bottom }}
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-hint" aria-label="{{ site_content.hero_scroll_hint }}">
+      <span class="mouse"><i></i></span>
+      <small>{{ site_content.hero_scroll_hint }}</small>
+    </a>
+
+    <div class="app-container stats-strip reveal">
+      <div class="stat-item">
+        <strong><span data-count="{{ site_content.stat_1_number }}">۰</span><b>{{ site_content.stat_1_suffix }}</b></strong>
+        <small>{{ site_content.stat_1_label }}</small>
+      </div>
+      <div class="stat-item">
+        <strong><span data-count="{{ site_content.stat_2_number }}">۰</span><b>{{ site_content.stat_2_suffix }}</b></strong>
+        <small>{{ site_content.stat_2_label }}</small>
+      </div>
+      <div class="stat-item">
+        <strong><span data-count="{{ site_content.stat_3_number }}">۰</span><b>{{ site_content.stat_3_suffix }}</b></strong>
+        <small>{{ site_content.stat_3_label }}</small>
+      </div>
+      <div class="stat-note">
+        <span class="live-dot"></span>
+        {{ site_content.stat_note }}
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" data-items="{{ site_content.marquee_items }}"></div>
+  </div>
+
+  <section id="about" class="section-space about-section">
+    <div class="app-container">
+      <div class="section-heading reveal">
+        <div>
+          <span class="section-kicker">{{ site_content.about_kicker }}</span>
+          <h2>{{ site_content.about_title }}</h2>
+        </div>
+        <p>{{ site_content.about_description }}</p>
+      </div>
+
+      <div class="value-grid">
+        <article class="value-card reveal" data-tilt>
+          <span class="value-number">{{ site_content.value_1_number }}</span>
+          <div class="value-icon"><svg class="icon"><use href="#i-flask"/></svg></div>
+          <h3>{{ site_content.value_1_title }}</h3>
+          <p>{{ site_content.value_1_description }}</p>
+          <span class="card-line"></span>
+        </article>
+        <article class="value-card value-card--featured reveal" data-tilt>
+          <span class="value-number">{{ site_content.value_2_number }}</span>
+          <div class="value-icon"><svg class="icon"><use href="#i-shield"/></svg></div>
+          <h3>{{ site_content.value_2_title }}</h3>
+          <p>{{ site_content.value_2_description }}</p>
+          <span class="card-line"></span>
+        </article>
+        <article class="value-card reveal" data-tilt>
+          <span class="value-number">{{ site_content.value_3_number }}</span>
+          <div class="value-icon"><svg class="icon"><use href="#i-support"/></svg></div>
+          <h3>{{ site_content.value_3_title }}</h3>
+          <p>{{ site_content.value_3_description }}</p>
+          <span class="card-line"></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space categories-section">
+    <div class="app-container">
+      <div class="section-heading reveal">
+        <div>
+          <span class="section-kicker">{{ site_content.categories_kicker }}</span>
+          <h2>{{ site_content.categories_title }}</h2>
+        </div>
+        <p>{{ site_content.categories_description }}</p>
+      </div>
+      <div class="category-grid">
+        {% for category in categories %}
+        <a class="category-card category-card--{{ category.key }} reveal" href="{% url 'products' %}?cat={{ category.key }}#product-list" style="--i: {{ forloop.counter0 }}">
+          <span class="category-icon"><svg class="icon"><use href="#i-{{ category.key }}"/></svg></span>
+          <span class="category-count"><b data-count="{{ category.count }}">۰</b> {{ site_content.category_count_suffix }}</span>
+          <h3>{% if category.key == "vaccine" %}{{ site_content.filter_vaccine }}{% elif category.key == "medicine" %}{{ site_content.filter_medicine }}{% elif category.key == "canned" %}{{ site_content.filter_canned }}{% else %}{{ site_content.filter_food }}{% endif %}</h3>
+          <p>{% if category.key == "vaccine" %}{{ site_content.category_vaccine_desc }}{% elif category.key == "medicine" %}{{ site_content.category_medicine_desc }}{% elif category.key == "canned" %}{{ site_content.category_canned_desc }}{% else %}{{ site_content.category_food_desc }}{% endif %}</p>
+          <span class="category-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase-section">
+    <div class="app-container showcase-grid">
+      <div class="showcase-copy reveal">
+        <span class="section-kicker section-kicker--light">{{ site_content.showcase_kicker }}</span>
+        <h2>{{ site_content.showcase_title }}</h2>
+        <p>{{ site_content.showcase_description }}</p>
+        <a href="{% url 'products' %}" class="text-link">{{ site_content.showcase_link }} <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="orbit-system reveal" aria-label="{{ site_content.orbit_aria }}">
+        <div class="orbit orbit--outer"><span class="orbit-dot"></span></div>
+        <div class="orbit orbit--inner"><span class="orbit-dot"></span></div>
+        <div class="orbit-pulse"></div>
+        <div class="orbit-center">
+          <img src="{% static 'products/img/logo.jpg' %}" alt="" width="120" height="120" />
+        </div>
+        <div class="orbit-node orbit-node--one"><svg class="icon"><use href="#i-food"/></svg>{{ site_content.orbit_1 }}</div>
+        <div class="orbit-node orbit-node--two"><svg class="icon"><use href="#i-shield"/></svg>{{ site_content.orbit_2 }}</div>
+        <div class="orbit-node orbit-node--three"><svg class="icon"><use href="#i-canned"/></svg>{{ site_content.orbit_3 }}</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section-space process-section">
+    <div class="app-container">
+      <div class="section-heading section-heading--center reveal">
+        <div>
+          <span class="section-kicker">{{ site_content.process_kicker }}</span>
+          <h2>{{ site_content.process_title }}</h2>
+        </div>
+      </div>
+      <div class="process-wrap">
+      <span class="process-line" aria-hidden="true"><i></i></span>
+      <ol class="process-timeline">
+        <li class="process-step reveal" style="--i: 0">
+          <span class="process-badge"><svg class="icon"><use href="#i-chat"/></svg></span>
+          <span class="process-index">۰۱</span>
+          <h3>{{ site_content.process_1_title }}</h3>
+          <p>{{ site_content.process_1_description }}</p>
+        </li>
+        <li class="process-step reveal" style="--i: 1">
+          <span class="process-badge"><svg class="icon"><use href="#i-check"/></svg></span>
+          <span class="process-index">۰۲</span>
+          <h3>{{ site_content.process_2_title }}</h3>
+          <p>{{ site_content.process_2_description }}</p>
+        </li>
+        <li class="process-step reveal" style="--i: 2">
+          <span class="process-badge"><svg class="icon"><use href="#i-truck"/></svg></span>
+          <span class="process-index">۰۳</span>
+          <h3>{{ site_content.process_3_title }}</h3>
+          <p>{{ site_content.process_3_description }}</p>
+        </li>
+        <li class="process-step reveal" style="--i: 3">
+          <span class="process-badge"><svg class="icon"><use href="#i-support"/></svg></span>
+          <span class="process-index">۰۴</span>
+          <h3>{{ site_content.process_4_title }}</h3>
+          <p>{{ site_content.process_4_description }}</p>
+        </li>
+      </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section-space faq-section">
+    <div class="app-container faq-grid">
+      <div class="faq-intro reveal">
+        <span class="section-kicker">{{ site_content.faq_kicker }}</span>
+        <h2>{{ site_content.faq_title }}</h2>
+        <a class="button button--dark" href="tel:{{ site_content.phone_link }}">
+          <svg class="icon"><use href="#i-phone"/></svg>
+          <span dir="ltr">{{ site_content.phone_display }}</span>
+        </a>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item reveal" open>
+          <summary>{{ site_content.faq_1_question }}<svg class="icon"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-answer"><p>{{ site_content.faq_1_answer }}</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>{{ site_content.faq_2_question }}<svg class="icon"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-answer"><p>{{ site_content.faq_2_answer }}</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>{{ site_content.faq_3_question }}<svg class="icon"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-answer"><p>{{ site_content.faq_3_answer }}</p></div>
+        </details>
+        <details class="faq-item reveal">
+          <summary>{{ site_content.faq_4_question }}<svg class="icon"><use href="#i-chevron"/></svg></summary>
+          <div class="faq-answer"><p>{{ site_content.faq_4_answer }}</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section-space contact-section">
+    <div class="app-container">
+      <div class="contact-panel reveal">
+        <div class="contact-intro">
+          <span class="section-kicker">{{ site_content.contact_kicker }}</span>
+          <h2>{{ site_content.contact_title }}</h2>
+          <p>{{ site_content.contact_description }}</p>
+        </div>
+        <div class="contact-list">
+          <a href="tel:{{ site_content.phone_link }}" class="contact-item">
+            <span class="contact-icon"><svg class="icon"><use href="#i-phone"/></svg></span>
+            <span><small>{{ site_content.phone_label }}</small><b dir="ltr">{{ site_content.phone_display }}</b></span>
+            <svg class="icon contact-arrow"><use href="#i-arrow"/></svg>
+          </a>
+          <a href="mailto:{{ site_content.email }}" class="contact-item">
+            <span class="contact-icon"><svg class="icon"><use href="#i-mail"/></svg></span>
+            <span><small>{{ site_content.email_label }}</small><b>{{ site_content.email }}</b></span>
+            <svg class="icon contact-arrow"><use href="#i-arrow"/></svg>
+          </a>
+          <div class="contact-item">
+            <span class="contact-icon"><svg class="icon"><use href="#i-pin"/></svg></span>
+            <span><small>{{ site_content.address_label }}</small><b>{{ site_content.address }}</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-band reveal">
+        <div class="cta-band-glow" aria-hidden="true"></div>
+        <div>
+          <h2>{{ site_content.cta_title }}</h2>
+          <p>{{ site_content.cta_description }}</p>
+        </div>
+        <a class="button button--gold magnetic" href="tel:{{ site_content.phone_link }}">
+          <svg class="icon"><use href="#i-phone"/></svg>
+          <span>{{ site_content.cta_button }}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
